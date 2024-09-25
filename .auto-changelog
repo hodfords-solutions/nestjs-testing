@@ -1,0 +1,7 @@
+{
+  "output": "CHANGELOG.md",
+  "template": "keepachangelog",
+  "ignoreCommitPattern": "^(?!(feat|fix|\\[feat\\]|\\[fix\\]))(.*)$",
+  "commitLimit": false,
+  "commitUrl": "https://github.com/hodfords-solutions/nestjs-storage/commit/{id}"
+}

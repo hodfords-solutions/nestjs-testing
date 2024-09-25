@@ -1,0 +1,18 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "sample",
+  "projects": {
+    "nestjs-testing": {
+      "type": "library",
+      "root": "lib",
+      "entryFile": "index",
+      "sourceRoot": "lib"
+    }
+  },
+  "compilerOptions": {
+    "webpack": false,
+    "assets": [
+
+    ]
+  }
+}
