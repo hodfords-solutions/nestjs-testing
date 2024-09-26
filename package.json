@@ -16,7 +16,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"sample/**/*.ts\" \"lib/**/*.ts\"",
-    "postbuild": "cp package.json dist/libs && cp README.md dist/libs && cp .npmrc dist/libs",
+    "postbuild": "cp package.json dist/lib && cp README.md dist/lib && cp .npmrc dist/lib",
     "lint": "eslint --fix",
     "prepare": "is-ci || husky",
     "release:patch": "git add CHANGELOG.md && npm version patch --tag-version-prefix='' -f -m 'chore: release to %s'",
