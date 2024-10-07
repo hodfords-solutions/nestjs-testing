@@ -56,10 +56,6 @@ test.prototype.setHeader = function (key: string, value: any): Test {
     return this.set(key, value);
 };
 
-test.prototype.set = function (key: string, value: any): Test {
-    return this.set(key, value);
-};
-
 test.prototype.isOk = function (): Test {
     return this.expect(HttpStatus.OK);
 };
