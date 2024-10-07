@@ -1,6 +1,6 @@
 {
   "name": "@hodfords/nestjs-testing",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Provides some tools for implementing Unit test in Nestjs.",
   "homepage": "https://github.com/hodfords-solutions/nestjs-testing#readme",
   "bugs": {
