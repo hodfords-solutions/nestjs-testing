@@ -1,6 +1,6 @@
 {
   "name": "@hodfords/nestjs-testing",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Provides some tools for implementing Unit test in Nestjs.",
   "homepage": "https://github.com/hodfords-solutions/nestjs-testing#readme",
   "bugs": {
@@ -34,6 +34,7 @@
     "wz-command": "wz-command"
   },
   "devDependencies": {
+    "@hodfords/nestjs-exception": "^10.1.2",
     "@hodfords/nestjs-eslint-config": "10.0.5",
     "@hodfords/nestjs-prettier-config": "10.0.1",
     "@nestjs/cli": "10.4.5",
