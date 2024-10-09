@@ -1,10 +1,11 @@
 import { TestingModule, TestingModuleBuilder } from '@nestjs/testing';
-import { Type } from '@nestjs/common';
+import { Type, ValidationPipe } from '@nestjs/common';
 import request, { CallbackHandler } from 'supertest';
 import './suppertest.helper';
 import { SupertestConfig } from '../types/supertest-config.type';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Server } from 'http';
+import { ValidateException } from '@hodfords/nestjs-exception';
 
 export abstract class BaseTestHelper {
     public app: NestExpressApplication;
@@ -26,6 +27,13 @@ export abstract class BaseTestHelper {
         }
         this.moduleFixture = await moduleBuilder.compile();
         this.app = this.moduleFixture.createNestApplication();
+        this.app.useGlobalPipes(
+            new ValidationPipe({
+                whitelist: true,
+                stopAtFirstError: true,
+                exceptionFactory: (errors): ValidateException => new ValidateException(errors)
+            })
+        );
         await this.beforeNestStart();
         await this.app.init();
         this.httpService = this.app.getHttpServer();
