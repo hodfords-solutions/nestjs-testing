@@ -86,7 +86,7 @@ export abstract class BaseTestHelper {
         if (typeof condition === 'string') {
             condition = { id: condition };
         }
-        if (await entity.getRepository().findOne(condition)) {
+        if (await entity.getRepository().findOneBy(condition)) {
             throw new Error(`${JSON.stringify(condition)}  visible in database`);
         }
     }
