@@ -4,6 +4,7 @@ import { get, has } from 'lodash';
 import { HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { SupertestConfig } from '../types/supertest-config.type';
+import { assertHas } from './assert.helper';
 
 const test = (request as any).Test;
 const msgError = 'Response do not contains key';
@@ -18,7 +19,15 @@ declare module 'supertest' {
 
         has(keys: string | string[]): this;
 
+        arrayHas(keys: string | string[]): this;
+
         notHas(keys: string | string[]): this;
+
+        arrayNotHas(keys: string | string[]): this;
+
+        notEmptyArray(): this;
+
+        isEmptyArray(): this;
 
         assertValue(key: string, value): this;
 
@@ -109,32 +118,34 @@ test.prototype.isPagination = function (dataKey?: string): Test {
 
 test.prototype.has = function (keys: string | string[]): Test {
     return this.expect(function (res) {
-        if (typeof keys === 'string') {
-            if (!has(res.body, keys)) {
-                throw new Error(`${msgError} ${keys}`);
-            }
-        } else {
-            for (const key of keys) {
-                if (!has(res.body, key)) {
-                    throw new Error(`${msgError} ${key}`);
-                }
-            }
+        assertHas(res.body, keys, true);
+    });
+};
+
+test.prototype.arrayHas = function (keys: string | string[]): Test {
+    return this.expect(function (res) {
+        if (!Array.isArray(res.body)) {
+            throw new Error(`Response is not an array`);
+        }
+        for (const item of res.body) {
+            assertHas(item, keys, true);
         }
     });
 };
 
 test.prototype.notHas = function (keys: string | string[]): Test {
     return this.expect(function (res) {
-        if (typeof keys === 'string') {
-            if (has(res.body, keys)) {
-                throw new Error('Response contains key ' + keys);
-            }
-        } else {
-            for (const key of keys) {
-                if (has(res.body, key)) {
-                    throw new Error('Response contains key ' + key);
-                }
-            }
+        assertHas(res.body, keys, false);
+    });
+};
+
+test.prototype.arrayNotHas = function (keys: string | string[]): Test {
+    return this.expect(function (res) {
+        if (!Array.isArray(res.body)) {
+            throw new Error(`Response is not an array`);
+        }
+        for (const item of res.body) {
+            assertHas(item, keys, false);
         }
     });
 };
@@ -144,6 +155,24 @@ test.prototype.assertValue = function (key: string, value: any): Test {
         const body = res.body;
         if (get(body, key) !== value) {
             throw new Error(`${key} not equal ${value}. Value is ${get(body, key)}`);
+        }
+    });
+};
+
+test.prototype.notEmptyArray = function (): Test {
+    return this.expect(function (res) {
+        const body = res.body;
+        if (!Array.isArray(body) || body.length === 0) {
+            throw new Error(`Response is not a non-empty array`);
+        }
+    });
+};
+
+test.prototype.isEmptyArray = function (): Test {
+    return this.expect(function (res) {
+        const body = res.body;
+        if (!Array.isArray(body) || body.length > 0) {
+            throw new Error(`Response is not an empty array`);
         }
     });
 };
