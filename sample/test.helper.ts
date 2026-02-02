@@ -7,7 +7,8 @@ export class TestHelper extends BaseTestHelper {
     getSupertestConfig(): SupertestConfig {
         return {
             isUseBearerAuth: true,
-            authenticationHeader: 'Authorization'
+            authenticationHeader: 'Authorization',
+            workspaceHeader: 'x-workspace-id'
         };
     }
 

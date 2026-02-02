@@ -61,6 +61,10 @@ test.prototype.authenticate = function (value: string): Test {
     return this.set(this.config.authenticationHeader, value);
 };
 
+test.prototype.workspace = function (value: string): Test {
+    return this.set(this.config.workspaceHeader, value);
+};
+
 test.prototype.setHeader = function (key: string, value: any): Test {
     return this.set(key, value);
 };
