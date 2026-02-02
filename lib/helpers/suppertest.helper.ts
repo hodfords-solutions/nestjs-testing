@@ -15,7 +15,7 @@ declare module 'supertest' {
 
         authenticate(token: string): this;
 
-        authenticate(workspaceId: string): this;
+        workspace(workspaceId: string): this;
 
         setHeader(key: string, value: string): this;
 
