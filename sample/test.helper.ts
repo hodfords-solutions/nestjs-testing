@@ -1,4 +1,4 @@
-import { BaseTestHelper, SupertestConfig } from '@hodfords/nestjs-testing';
+import { BaseTestHelper, SupertestConfig } from '../lib/index.js';
 import { Test, TestingModuleBuilder } from '@nestjs/testing';
 import { AppModule } from './app.module.js';
 
