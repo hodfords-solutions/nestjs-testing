@@ -1,2 +1,2 @@
-export * from './helpers/test.helper';
-export * from './types/supertest-config.type';
+export * from './helpers/test.helper.js';
+export * from './types/supertest-config.type.js';

@@ -1,4 +1,5 @@
-import { TestHelper } from './test.helper';
+import { afterAll, beforeAll, describe, it } from 'vitest';
+import { TestHelper } from './test.helper.js';
 
 describe('AppController (e2e)', () => {
     const testHelper = new TestHelper();
@@ -7,7 +8,11 @@ describe('AppController (e2e)', () => {
         await testHelper.initialize();
     });
 
+    afterAll(async () => {
+        await testHelper.close();
+    });
+
     it('Get index success', async () => {
-        return testHelper.get('/').isOk().expect('Hello World!2');
+        return testHelper.get('/').isOk().expect('Hello World!');
     });
 });

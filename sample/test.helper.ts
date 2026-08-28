@@ -1,7 +1,6 @@
-import { BaseTestHelper } from '@hodfords/nestjs-testing';
+import { BaseTestHelper, SupertestConfig } from '@hodfords/nestjs-testing';
 import { Test, TestingModuleBuilder } from '@nestjs/testing';
-import { AppModule } from './app.module';
-import { SupertestConfig } from 'lib/types/supertest-config.type';
+import { AppModule } from './app.module.js';
 
 export class TestHelper extends BaseTestHelper {
     getSupertestConfig(): SupertestConfig {

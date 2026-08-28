@@ -1,10 +1,10 @@
 import { TestingModule, TestingModuleBuilder } from '@nestjs/testing';
 import { Type } from '@nestjs/common';
 import request, { CallbackHandler } from 'supertest';
-import './suppertest.helper';
-import { SupertestConfig } from '../types/supertest-config.type';
+import './suppertest.helper.js';
+import { SupertestConfig } from '../types/supertest-config.type.js';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { Server } from 'http';
+import type { Server } from 'node:http';
 
 export abstract class BaseTestHelper {
     public app: NestExpressApplication;
@@ -40,7 +40,8 @@ export abstract class BaseTestHelper {
 
     async close(): Promise<void> {
         this.app.flushLogs();
-        jest.restoreAllMocks();
+        const { vi } = await import('vitest');
+        vi.restoreAllMocks();
         await this.beforeCloseApp();
         await this.app.close();
         this.app = null;
