@@ -1,6 +1,4 @@
-import lodash from 'lodash';
-
-const { has } = lodash;
+import { has } from 'es-toolkit/compat';
 
 function normalizeKeys(keys: string | string[]): string[] {
     return Array.isArray(keys) ? keys : [keys];

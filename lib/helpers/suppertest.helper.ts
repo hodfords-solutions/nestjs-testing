@@ -1,12 +1,11 @@
 import request from 'supertest';
 import type superagent from 'superagent';
-import lodash from 'lodash';
+import { get, has } from 'es-toolkit/compat';
 import { HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { SupertestConfig } from '../types/supertest-config.type.js';
 import { assertHas } from './assert.helper.js';
 
-const { get, has } = lodash;
 const test = (request as any).Test;
 const msgError = 'Response do not contains key';
 
