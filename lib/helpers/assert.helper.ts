@@ -1,14 +1,10 @@
-import { has } from "lodash";
+import { has } from 'es-toolkit/compat';
 
 function normalizeKeys(keys: string | string[]): string[] {
     return Array.isArray(keys) ? keys : [keys];
 }
 
-export function assertHas(
-    target: any,
-    keys: string | string[],
-    shouldHave: boolean
-) {
+export function assertHas(target: any, keys: string | string[], shouldHave: boolean) {
     keys = normalizeKeys(keys);
     for (const key of keys) {
         const exists = has(target, key);
