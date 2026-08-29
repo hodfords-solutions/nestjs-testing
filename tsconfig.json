@@ -3,6 +3,8 @@
         "module": "nodenext",
         "moduleResolution": "nodenext",
         "target": "es2023",
+        "strictPropertyInitialization": false,
+        "types": ["node"],
         "lib": ["es2023"],
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
@@ -14,7 +16,6 @@
         "skipLibCheck": true,
         "outDir": "dist",
         "rootDir": ".",
-        "baseUrl": "./",
         "incremental": true,
         "strictNullChecks": false,
         "noImplicitAny": false,
@@ -22,7 +23,7 @@
         "forceConsistentCasingInFileNames": false,
         "noFallthroughCasesInSwitch": false,
         "paths": {
-            "@hodfords/nestjs-testing": ["lib/index.ts"]
+            "@hodfords/nestjs-testing": ["./lib/index.ts"]
         }
     },
     "include": ["lib"],
