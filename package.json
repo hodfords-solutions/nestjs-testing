@@ -1,6 +1,6 @@
 {
     "name": "@hodfords/nestjs-testing",
-    "version": "12.1.0",
+    "version": "12.2.0",
     "description": "Provides some tools for implementing Unit test in Nestjs.",
     "homepage": "https://github.com/hodfords-solutions/nestjs-testing#readme",
     "bugs": {
@@ -48,8 +48,19 @@
     "peerDependencies": {
         "@nestjs/common": ">=12.0.0",
         "@nestjs/core": ">=12.0.0",
+        "@nestjs/platform-express": ">=12.0.0",
         "@nestjs/testing": ">=12.0.0",
+        "superagent": "*",
+        "supertest": ">=7.0.0",
         "vitest": ">=4.0.0"
+    },
+    "peerDependenciesMeta": {
+        "@nestjs/platform-express": {
+            "optional": true
+        },
+        "superagent": {
+            "optional": true
+        }
     },
     "devDependencies": {
         "@hodfords/nestjs-eslint-config": "11.0.2",
