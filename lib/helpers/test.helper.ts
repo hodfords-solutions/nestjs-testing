@@ -63,24 +63,29 @@ export abstract class BaseTestHelper {
         return request;
     }
 
+    private buildRequest(test: request.Test, callback?: CallbackHandler): request.Test {
+        const configuredTest = this.applySupertestConfig(test);
+        return callback ? configuredTest.end(callback) : configuredTest;
+    }
+
     get(url: string, callback?: CallbackHandler): request.Test {
-        return this.applySupertestConfig(request(this.httpService).get(url, callback));
+        return this.buildRequest(request(this.httpService).get(url), callback);
     }
 
     post(url: string, callback?: CallbackHandler): request.Test {
-        return this.applySupertestConfig(request(this.httpService).post(url, callback));
+        return this.buildRequest(request(this.httpService).post(url), callback);
     }
 
     put(url: string, callback?: CallbackHandler): request.Test {
-        return this.applySupertestConfig(request(this.httpService).put(url, callback));
+        return this.buildRequest(request(this.httpService).put(url), callback);
     }
 
     patch(url: string, callback?: CallbackHandler): request.Test {
-        return this.applySupertestConfig(request(this.httpService).patch(url, callback));
+        return this.buildRequest(request(this.httpService).patch(url), callback);
     }
 
     delete(url: string, callback?: CallbackHandler): request.Test {
-        return this.applySupertestConfig(request(this.httpService).delete(url, callback));
+        return this.buildRequest(request(this.httpService).delete(url), callback);
     }
 
     async invisibleInDatabase(entity: any, condition: any): Promise<void> {
